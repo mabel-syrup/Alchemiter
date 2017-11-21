@@ -1,0 +1,27 @@
+{
+  "felt_green" : {
+    "primary" : "green",
+    "secondary" : "green",
+    "tertiary" : "white"
+  },
+  "felt_white" : {
+    "primary" : "white",
+    "secondary" : "green",
+    "tertiary" : "white"
+  },
+  "felt_itchy" : {
+    "primary" : "green",
+    "secondary" : "yellow",
+    "tertiary" : "green"
+  },
+  "felt_doze" : {
+    "primary" : "green",
+    "secondary" : "blue",
+    "tertiary" : "green"
+  },
+  "felt_trace" : {
+    "primary" : "green",
+    "secondary" : "red",
+    "tertiary" : "green"
+  }
+}

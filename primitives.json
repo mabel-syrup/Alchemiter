@@ -1,0 +1,50 @@
+{
+  "cup" : {
+    "north" : true,
+    "east"  : true,
+    "south" : true,
+    "west"  : true,
+    "top"   : false,
+    "bottom": true
+  },
+  "cube" : {
+    "north" : true,
+    "east"  : true,
+    "south" : true,
+    "west"  : true,
+    "top"   : true,
+    "bottom": true
+  },
+  "arch" : {
+    "north" : false,
+    "east"  : false,
+    "south" : false,
+    "west"  : false,
+    "top"   : false,
+    "bottom": true
+  },
+  "rod" : {
+    "north" : false,
+    "east"  : false,
+    "south" : false,
+    "west"  : false,
+    "top"   : true,
+    "bottom": true
+  },
+  "plane" : {
+    "north" : false,
+    "east"  : false,
+    "south" : false,
+    "west"  : false,
+    "top"   : true,
+    "bottom": true
+  },
+  "logo" : {
+    "north" : false,
+    "east"  : false,
+    "south" : false,
+    "west"  : false,
+    "top"   : false,
+    "bottom": true
+  }
+}

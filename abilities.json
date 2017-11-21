@@ -1,0 +1,65 @@
+{
+  "communication_voice" : {
+    "flavor" : "communicate over voice",
+    "requirements" : [
+      {
+        "all" : ["microphone", "speaker"],
+        "any" : ["computer", "computer_light"],
+        "caveats" : []
+      }
+    ],
+    "behaviors" : []
+  },
+  "communication_text": {
+    "flavor" : "communicate over text",
+    "requirements" : [
+      {
+        "all" : ["computer_input", "screen"],
+        "any" : ["computer", "computer_light"],
+        "caveats" : []
+      }
+    ],
+    "behaviors" : []
+  },
+  "liquid_containment" : {
+    "flavor" : "store liquid",
+    "requirements" : [
+      {
+        "all" : [],
+        "any" : ["tank", "pool", "cup"],
+        "caveats" : [
+          {
+            "part" : "cup",
+            "statements" : [
+              {"statement" : "facing", "value" : "up"}
+            ]
+          }
+        ]
+      }
+    ],
+    "behaviors" : [
+      {
+        "name" : "add_liquid",
+        "parameters" : ["all_fulfilling"]
+      }
+    ]
+  },
+  "blunt_force_attack" : {
+    "flavor" : "attack using blunt force",
+    "requirements" : [
+      {
+        "all" : ["handle"],
+        "any" : ["head_block"],
+        "caveats" : [
+          {
+            "part" : "head_block",
+            "statements" : [
+              {"statement" : "child_of", "value" : "handle"}
+            ]
+          }
+        ]
+      }
+    ],
+    "behaviors" : []
+  }
+}

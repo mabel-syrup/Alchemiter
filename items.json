@@ -1,0 +1,30 @@
+{
+  "mug" : {
+    "color scheme" : "Solid White",
+    "theme" : "Generic",
+    "tree" : {"cup_000" : {"data":  ["Root","Root"], "children" : [{"handle_000": {"data" : ["east","bottom"]}}]}}
+  },
+  "sledgehammer" : {
+    "color scheme" : "Natural",
+    "theme" : "Generic",
+    "tree" : {"handle_001" : {"data":  ["Root","Root"], "children" : [{"head_000": {"data" : ["top","bottom"]}}]}}
+  },
+  "smartphone" : {
+    "color scheme" : "Sleek Black",
+    "theme" : "Android",
+    "tree" : {"phone_000" : {"data":  ["Root","Root"], "children" : [
+      {"screen_000": {"data" : ["top","bottom"]}},
+      {"logo_000": {"data" : ["bottom","bottom"]}}
+    ]}}
+  },
+  "laptop" : {
+    "color scheme" : "Silver",
+    "theme" : "Apple",
+    "tree" : {"laptop_000" : {"data":  ["Root","Root"], "children" : [
+      {"screen_001": {"data" : ["north","bottom"], "children": [
+        {"logo_000": {"data" : ["north","bottom"]}}
+      ]}},
+      {"keyboard_000": {"data" : ["top","bottom"]}}
+    ]}}
+  }
+}

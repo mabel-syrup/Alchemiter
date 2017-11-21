@@ -1,0 +1,67 @@
+{
+  "the felt" : {
+    "subthemes": {
+      "default" : {
+        "chance" : 1,
+        "color schemes" : {
+          "felt green" : 1,
+          "felt white" : 0.5
+        },
+        "icons" : {
+          "8 ball" : 1,
+          "cue ball" : 0.5
+        },
+        "figures" : {
+          "8 ball" : 1,
+          "cue ball" : 0.5
+        }
+      },
+      "itchy" : {
+        "chance" : 0.07,
+        "color schemes" : {
+          "felt green" : 0.5,
+          "felt_itchy" : 0.5
+        },
+        "icons" : {
+          "1 ball" : 1
+        },
+        "figures" : {
+          "1 ball" : 1
+        }
+      },
+      "doze" : {
+        "chance" : 0.07,
+        "color schemes" : {
+          "felt green" : 0.5,
+          "felt_doze" : 0.5
+        },
+        "icons" : {
+          "2 ball" : 1
+        },
+        "figures" : {
+          "2 ball" : 1
+        }
+      },
+      "trace" : {
+        "chance" : 0.07,
+        "color schemes" : {
+          "felt green" : 0.5,
+          "felt_trace" : 0.5
+        },
+        "icons" : {
+          "3 ball" : 1
+        },
+        "figures" : {
+          "3 ball" : 1
+        }
+      }
+    },
+    "imagery" : {
+      "felt poster" : 1
+    },
+    "materials" : {
+      "felt" : 1
+    },
+    "mechanisms": {}
+  }
+}

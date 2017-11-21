@@ -1,0 +1,92 @@
+{
+  "cup_000": {
+    "name" : "cup",
+    "material" : "ceramic",
+    "primitive" : "cup",
+    "mechanisms" : ["cup"],
+    "properties" : [],
+    "image_file" : "cup_000",
+    "image_mode" : 2
+  },
+  "handle_000": {
+    "name" : "handle",
+    "material" : "ceramic",
+    "primitive" : "arch",
+    "mechanisms" : ["handle"],
+    "properties" : [],
+    "image_file" : "cup_000",
+    "image_mode" : 1
+  },
+  "handle_001": {
+    "name" : "handle",
+    "material" : "wood",
+    "primitive" : "rod",
+    "mechanisms" : ["handle"],
+    "properties" : [],
+    "image_file" : "handle_001",
+    "image_mode" : 2
+  },
+  "head_000": {
+    "name" : "head",
+    "material" : "steel",
+    "primitive" : "cube",
+    "mechanisms" : ["head_block"],
+    "properties" : [],
+    "image_file" : "head_000",
+    "image_mode" : 2
+  },
+  "phone_000": {
+    "name" : "phone",
+    "material" : "aluminum",
+    "primitive" : "cube",
+    "mechanisms" : ["computer_light", "speaker", "microphone"],
+    "properties" : [],
+    "image_file" : "phone_000",
+    "image_mode" : 0
+  },
+  "screen_000": {
+    "name" : "touchscreen",
+    "material" : "glass",
+    "primitive" : "plane",
+    "mechanisms" : ["computer_input", "input", "screen"],
+    "properties" : [],
+    "image_file" : "screen_000",
+    "image_mode" : 2
+  },
+  "logo_000": {
+    "name" : "logo",
+    "material" : "plastic",
+    "primitive" : "logo",
+    "mechanisms" : [],
+    "properties" : [],
+    "image_file" : "logo_error",
+    "image_mode" : 0
+  },
+  "laptop_000": {
+    "name" : "laptop",
+    "material" : "aluminum",
+    "primitive" : "cube",
+    "mechanisms" : ["computer", "speaker", "microphone"],
+    "properties" : [],
+    "image_file" : "laptop_000",
+    "image_mode" : 0
+  },
+  "screen_001": {
+    "name" : "screen",
+    "material" : "plastic",
+    "primitive" : "cube",
+    "mechanisms" : ["screen"],
+    "properties" : [],
+    "image_file" : "screen_001",
+    "image_mode" : 0
+  },
+  "keyboard_000": {
+    "name" : "keyboard",
+    "material" : "plastic",
+    "primitive" : "logo",
+    "mechanisms" : ["input", "computer_input"],
+    "properties" : [],
+    "image_file" : "keyboard_000",
+    "image_mode" : 0
+  }
+}

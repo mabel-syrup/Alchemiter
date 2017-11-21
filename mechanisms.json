@@ -1,0 +1,73 @@
+{
+  "computer": {
+    "requires_any" : [
+      "input",
+      "computer_input"
+    ],
+    "requires_all" : [],
+    "allows": [
+    ]
+  },
+  "computer_light": {
+    "requires_any" : [
+      "input",
+      "computer_input"
+    ],
+    "requires_all" : [],
+    "allows": []
+  },
+  "input": {
+    "requires_any" : [],
+    "requires_all" : [],
+    "allows": []
+  },
+  "computer_input": {
+    "requires_any" : [],
+    "requires_all" : [],
+    "allows": []
+  },
+  "screen": {
+    "requires_any" : [
+      "computer",
+      "computer_light"
+    ],
+    "requires_all" : [],
+    "allows": [
+      "communication_text",
+      "sburb_server",
+      "sburb_client",
+      "gristtorrent"
+    ]
+  },
+  "speaker": {
+    "requires_any" : [
+      "computer",
+      "computer_light"
+    ],
+    "requires_all" : [],
+    "allows": [
+      "communication_voice"
+    ]
+  },
+  "container_liquid": {
+    "requires_any" : [],
+    "requires_all" : [],
+    "allows": [
+      "liquid_containment"
+    ]
+  },
+  "handle": {
+    "requires_any" : [],
+    "requires_all" : [],
+    "allows": []
+  },
+  "blunt_force_damage": {
+    "requires_any" : [
+      "handle"
+    ],
+    "requires_all" : [],
+    "allows" : [
+      "blunt_force_attack"
+    ]
+  }
+}
