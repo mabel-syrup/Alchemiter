@@ -103,6 +103,22 @@ class Primitive:
         self.node_top = top
         self.node_bottom = bottom
 
+    def get_anchors(self):
+        anchors = []
+        if self.node_north:
+            anchors.append("north")
+        if self.node_south:
+            anchors.append("south")
+        if self.node_east:
+            anchors.append("east")
+        if self.node_west:
+            anchors.append("west")
+        if self.node_top:
+            anchors.append("top")
+        if self.node_bottom:
+            anchors.append("bottom")
+        return anchors
+
 
 class Mechanism:
     name = ''

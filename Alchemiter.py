@@ -2,6 +2,7 @@ import AlchemyObjects
 import AlchemyTypes
 from AlchemyGlobal import items, components
 from Loader import load
+from Alchemization import alchemizeAND
 
 
 def main():
@@ -10,6 +11,7 @@ def main():
         print(item.get_construct())
         print(item.get_ability_set())
     items[0].get_save_json()
+    alchemizeAND(items[0], items[1])
     item_name = input('Item Name?\n>')
     item = AlchemyObjects.Item(item_name, None)
     done = False

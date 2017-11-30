@@ -41,6 +41,12 @@ class Component:
         self.name = name
         self.ID = component_id
 
+    def get_anchors(self):
+        anchor_list = self.primitive_shape.get_anchors()
+        if self.anchor_to_parent_c in anchor_list:
+            anchor_list.remove(self.anchor_to_parent_c)
+        return anchor_list
+
     def set_material(self, material):
         self.material = material
 
@@ -106,6 +112,24 @@ class Item:
             for child in children:
                 outstring += "\n\t{}".format(self.loop_construct(child.identifier, root.tag))
         return outstring
+
+    def get_open_anchors(self):
+        print("Getting open anchor points for {}...".format(self.name))
+        anchor_dict = {}
+        c_tree = self.c_tree
+        component_nodes = c_tree.all_nodes()
+        for node in component_nodes:
+            comp = node.data
+            anchors = comp.get_anchors()
+            comp_children = c_tree.children(node.identifier)
+            for child in comp_children:
+                anchor = child.data.anchor_to_parent_p
+                if anchor in anchors:
+                    anchors.remove(anchor)
+            anchor_dict[node.identifier] = anchors
+            print(str(anchors))
+        return anchor_dict
+
 
     def get_child_list(self, nid):
         children = self.c_tree.children(nid)
