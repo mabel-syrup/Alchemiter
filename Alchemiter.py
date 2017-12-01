@@ -1,6 +1,6 @@
 import AlchemyObjects
 import AlchemyTypes
-from AlchemyGlobal import items, components
+from AlchemyGlobal import items, components, get_seed
 from Loader import load
 from Alchemization import alchemizeAND
 

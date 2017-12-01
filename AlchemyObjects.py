@@ -76,6 +76,16 @@ class Component:
     def get_mechanisms(self):
         return self.mechanisms
 
+    def get_an_anchor(self, seed, available=None):
+        if available is None:
+            available = self.get_anchors()
+        anchors = self.get_anchors()
+        for anchor in available:
+            if anchor in self.get_anchors():
+                anchors.append(anchor)
+        index = seed % len(anchors)
+        return anchors[index]
+
 
 class Item:
     name = ''
@@ -99,6 +109,18 @@ class Item:
                 out_string += 'the {} of the {} is attached to the {} of the {}\n'\
                     .format(c.data.anchor_to_parent_c, c.data.name, c.data.anchor_to_parent_p, parent.data.name)
         return out_string
+
+    def get_a_component(self, seed):
+        components = self.c_tree.all_nodes()
+        index = seed % len(components)
+        return components[seed].identifier
+
+    def get_components(self):
+        out_comps = []
+        nodes = self.c_tree.all_nodes()
+        for node in nodes:
+            out_comps.append(node.data)
+        return out_comps
 
     def get_construct(self):
         outstring = ''
@@ -126,6 +148,8 @@ class Item:
                 anchor = child.data.anchor_to_parent_p
                 if anchor in anchors:
                     anchors.remove(anchor)
+            if len(anchors) < 1:
+                continue
             anchor_dict[node.identifier] = anchors
             print(str(anchors))
         return anchor_dict
