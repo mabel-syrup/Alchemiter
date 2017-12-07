@@ -2,7 +2,7 @@ from tkinter import *
 from AlchemyGlobal import items, get_item_from_name
 from Alchemization import alchemize
 
-
+FONT = "Courier New Bold" #Hobo
 
 class AlchemyGUI:
     method = "AND"
@@ -23,10 +23,10 @@ class AlchemyGUI:
         left_list = Frame(frame)
         left_list.pack(side=LEFT, padx=5, pady=5, fill=Y, expand=1)
 
-        left_list_title = Label(left_list, justify=CENTER, text="SELECT ITEM A", fg="#67db74", font=("Hobo", 14))
+        left_list_title = Label(left_list, justify=CENTER, text="SELECT ITEM A", fg="#67db74", font=(FONT, 14))
         left_list_title.pack(side=TOP)
 
-        self.left_item_list = Listbox(left_list, width=15, borderwidth=0, fg="#67db74", font=("Hobo", 14), selectbackground="#67db74", exportselection=0, activestyle=NONE, highlightthickness=0)
+        self.left_item_list = Listbox(left_list, width=15, borderwidth=0, fg="#67db74", font=(FONT, 14), selectbackground="#67db74", exportselection=0, activestyle=NONE, highlightthickness=0)
         self.left_item_list.pack(side=TOP, fill=Y, expand=1)
 
         alchemy_frame = Frame(frame)
@@ -35,45 +35,45 @@ class AlchemyGUI:
         right_list = Frame(frame)
         right_list.pack(side=LEFT, padx=5, pady=5, fill=Y, expand=1)
 
-        right_list_title = Label(right_list, justify=CENTER, text="SELECT ITEM B", fg="#67db74", font=("Hobo", 14))
+        right_list_title = Label(right_list, justify=CENTER, text="SELECT ITEM B", fg="#67db74", font=(FONT, 14))
         right_list_title.pack(side=TOP)
 
-        self.right_item_list = Listbox(right_list, width=15, borderwidth=0, fg="#67db74", font=("Hobo", 14), selectbackground="#67db74", exportselection=0, activestyle=NONE, highlightthickness=0)
+        self.right_item_list = Listbox(right_list, width=15, borderwidth=0, fg="#67db74", font=(FONT, 14), selectbackground="#67db74", exportselection=0, activestyle=NONE, highlightthickness=0)
         self.right_item_list.pack(side=TOP, fill=Y, expand=1)
 
         self.populate_lists()
         # bg="#d6d6d6"
 
         # Alchemy controls
-        self.swap_button = Button(alchemy_frame, text="<- SWAP ->", justify=CENTER, width=10, height=1, fg="#67db74", font=("Hobo", 20), borderwidth=0, command=self.swap)
+        self.swap_button = Button(alchemy_frame, text="<- SWAP ->", justify=CENTER, width=10, height=1, fg="#67db74", font=(FONT, 20), borderwidth=0, command=self.swap)
         self.swap_button.pack(side=TOP)
 
         controls_frame = Frame(alchemy_frame)
         controls_frame.pack(side=TOP)
 
         self.item_a_button = Button(
-            controls_frame, text=self.item_a, justify=CENTER, width=10, height=6, fg="#67db74", font=("Hobo", 14), bg="white", borderwidth=0
+            controls_frame, text=self.item_a, justify=CENTER, width=10, height=6, fg="#67db74", font=(FONT, 14), bg="white", borderwidth=0
         )
         self.item_a_button.pack(side=LEFT, padx=25)
         self.method_button = Button(
-            controls_frame, text="&&", justify=CENTER, width=3, height=1, fg="#67db74", font=("Hobo", 44), bg="white", borderwidth=0, command=self.toggle_method
+            controls_frame, text="&&", justify=CENTER, width=3, height=1, fg="#67db74", font=(FONT, 44), bg="white", borderwidth=0, command=self.toggle_method
         )
         self.method_button.pack(side=LEFT, padx=5)
         self.item_b_button = Button(
-            controls_frame, text=self.item_b, justify=CENTER, width=10, height=6, fg="#67db74", font=("Hobo", 14), bg="white", borderwidth=0
+            controls_frame, text=self.item_b, justify=CENTER, width=10, height=6, fg="#67db74", font=(FONT, 14), bg="white", borderwidth=0
         )
         self.item_b_button.pack(side=LEFT, padx=25)
 
         self.alchemize_button = Button(
-            alchemy_frame, text="COMBINE", justify=CENTER, width=10, height=2, fg="#67db74", font=("Hobo", 24), bd=0, command=self.get_alchemy
+            alchemy_frame, text="COMBINE", justify=CENTER, width=10, height=2, fg="#67db74", font=(FONT, 24), bd=0, command=self.get_alchemy
         )
         self.alchemize_button.pack()
 
-        self.rename_button = Button(alchemy_frame, text="NAME", fg="#67db74", width=20, height=1, font=("Hobo", 14), bd=0, state=DISABLED, command=self.name_item)
+        self.rename_button = Button(alchemy_frame, text="NAME", fg="#67db74", width=20, height=1, font=(FONT, 14), bd=0, state=DISABLED, command=self.name_item)
         self.rename_button.pack()
 
         self.name_entry_string = StringVar()
-        self.name_entry = Entry(alchemy_frame, textvariable=self.name_entry_string, fg="#67db74", bg="white", readonlybackground="#67db74", width=20, font=("Hobo", 24), bd=0, justify=LEFT, state="readonly")
+        self.name_entry = Entry(alchemy_frame, textvariable=self.name_entry_string, fg="#67db74", bg="white", readonlybackground="#67db74", width=20, font=(FONT, 24), bd=0, justify=LEFT, state="readonly")
         self.name_entry.pack()
         self.name_entry_string.set("")
 
@@ -88,7 +88,7 @@ class AlchemyGUI:
         self.result_abilities.pack()
         self.abilities.set("")
 
-        self.save_button = Button(alchemy_frame, text="SAVE", justify=CENTER, width=10, height=2, bg="#67db74", fg="white", font=("Hobo", 24), bd=0, command=self.save_item, state=DISABLED)
+        self.save_button = Button(alchemy_frame, text="SAVE", justify=CENTER, width=10, height=2, bg="#67db74", fg="white", font=(FONT, 24), bd=0, command=self.save_item, state=DISABLED)
         self.save_button.pack()
 
         self.poll()
