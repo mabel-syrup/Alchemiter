@@ -129,17 +129,21 @@ class Item:
             out_comps.append(node.data)
         return out_comps
 
-    def get_construct(self):
+    def get_construct(self, has_name=True):
         outstring = ''
         this_tree = self.c_tree
         root = this_tree.get_node(this_tree.root)
-        outstring += "The {} is a {}".format(self.name, root.tag)
+        if has_name:
+            outstring += "The {} ".format(self.name)
+        else:
+            outstring += "This object "
+        outstring += "is a {}".format(root.tag)
         if not root.is_leaf():
             child_list = self.get_child_list(root.identifier)
             outstring += " with {}".format(get_oxford_comma(child_list))
             children = this_tree.children(root.identifier)
             for child in children:
-                outstring += "\n\t{}".format(self.loop_construct(child.identifier, root.tag))
+                outstring += "\n{}".format(self.loop_construct(child.identifier, root.tag))
         return outstring
 
     def get_open_anchors(self):
@@ -179,7 +183,7 @@ class Item:
         #print("Accessing data of Node ({})...".format(type(this_node)))
         comp = this_node.data
         #print("Data is of type {}".format(type(comp)))
-        outstring = "The {} is a {} and is on the {} of the {}".format(comp.name, comp.primitive_shape.name, comp.anchor_to_parent_p, parent_name)
+        outstring = "The {} is on the {} of the {}".format(comp.name, comp.anchor_to_parent_p, parent_name)
         child_list = self.get_child_list(nid)
         #print("Children: {} ({})".format(str(child_list), type(child_list)))
         if len(child_list) > 0:
@@ -187,7 +191,7 @@ class Item:
             outstring += ", with {}".format(child_string)
             children = this_tree.children(nid)
             for child in children:
-                outstring += "\n\t{}".format(self.loop_construct(child.identifier, comp.name))
+                outstring += "\n{}".format(self.loop_construct(child.identifier, comp.name))
         return outstring
 
     def has_root(self):
@@ -236,6 +240,7 @@ class Item:
             self.c_tree.add_node(this_node)
 
     def get_abilities(self):
+        print("Getting abilities for {}".format(self.name))
         mechs = self.get_mechanism_list()
         this_abilities = {}
         ability_names = list(abilities.keys())
@@ -260,7 +265,7 @@ class Item:
                 mechs.append(mech)
         return mechs
 
-    def get_ability_set(self):
+    def get_ability_set(self, has_name=True):
         readout = ""
         this_abilities = self.get_abilities()
         if len(this_abilities) < 1:
@@ -270,7 +275,11 @@ class Item:
         for ability_name in ability_names:
             ability = this_abilities[ability_name]
             ability_flavors.append(ability[0])
-        readout += "The {} can be used to {}\n\n".format(self.name, get_oxford_comma(ability_flavors))
+        if has_name:
+            readout += "The {} ".format(self.name)
+        else:
+            readout += "This object "
+        readout += "can be used to {}\n\n".format(get_oxford_comma(ability_flavors))
         return readout
 
     #def get_abilities(self):

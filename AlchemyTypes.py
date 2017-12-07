@@ -177,6 +177,7 @@ class Ability:
         self.behaviors = behaviors
 
     def meets_requirements(self, in_mechs, c_tree):
+        print("Checking requirements for {}".format(self.flavor_text))
         acceptable = False
         acceptable_list = []
         for req in self.requirements:

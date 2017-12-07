@@ -12,7 +12,7 @@
     "name" : "handle",
     "material" : "ceramic",
     "primitive" : "arch",
-    "mechanisms" : ["handle"],
+    "mechanisms" : ["grip"],
     "properties" : [],
     "image_file" : "cup_000",
     "image_mode" : 1
@@ -38,7 +38,7 @@
   "phone_000": {
     "name" : "phone",
     "material" : "aluminum",
-    "primitive" : "cube",
+    "primitive" : "rectangular_platform",
     "mechanisms" : ["computer_light", "speaker", "microphone", "grip"],
     "properties" : [],
     "image_file" : "phone_000",
@@ -65,7 +65,7 @@
   "laptop_000": {
     "name" : "laptop",
     "material" : "aluminum",
-    "primitive" : "cube",
+    "primitive" : "rectangular_platform",
     "mechanisms" : ["computer", "speaker", "microphone"],
     "properties" : [],
     "image_file" : "laptop_000",
@@ -74,7 +74,7 @@
   "screen_001": {
     "name" : "screen",
     "material" : "plastic",
-    "primitive" : "cube",
+    "primitive" : "plane",
     "mechanisms" : ["screen"],
     "properties" : [],
     "image_file" : "screen_001",

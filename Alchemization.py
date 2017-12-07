@@ -23,6 +23,7 @@ def alchemize(name_a, name_b):
         return None
     return alchemizeAND(item_a, item_b)
 
+
 def alchemizeAND(itemA, itemB):
     treeA = itemA.c_tree
     treeB = itemB.c_tree
@@ -48,31 +49,38 @@ def alchemizeAND(itemA, itemB):
         anchors = itemC.get_open_anchors()
     print(itemC.get_construct())
     print(itemC.get_ability_set())
-    return itemC.get_construct(), itemC.get_ability_set()
+    return itemC
 
         #print("Anchors: Parent-{} Child-{} Seed-{}".format(anchor_p, anchor_c, seed))
 
 
 def merge_from_mechanism_overlap(item, tree_a, nodes_b):
+    print("Merging mechanisms...")
     mech_duplicates = get_mechanism_duplicates(tree_a, nodes_b)
+    print("-Found {} obsolete components.\n-Merging...".format(len(mech_duplicates)))
     deletion = merge_components(item, mech_duplicates)
+    print("-Removing {} dead components...".format(len(deletion)))
     out_comps = remove_flagged(nodes_b, deletion)
     return out_comps
 
 
 def merge_from_primitive_overlap(item, tree_a, nodes_b):
+    print("Merging primitives...")
     primitive_duplicates = get_primitive_duplicates(tree_a, nodes_b)
+    print("-Found {} identical primitives.\n-Merging...".format(len(primitive_duplicates)))
     deletion = merge_components(item, primitive_duplicates)
+    print("-Removing {} dead components...".format(len(deletion)))
     out_comps = remove_flagged(nodes_b, deletion)
     return out_comps
 
 
 def remove_flagged(in_comps, flags):
     out_comps = []
+    print("Deletion: {}".format(flags))
     for node in in_comps:
-        #print("Checking flags for {}...".format(comp.name))
+        print("Checking flags for {}...".format(node.data.file_id))
         if node.data.file_id not in flags:
-            #print("Not flagged.")
+            print("Not flagged.")
             out_comps.append(node)
         else:
             print("{} flagged for deletion.  Removing...".format(node.data.name))
@@ -96,7 +104,7 @@ def merge_components(item, duplicates):
         print("Merging {} and {}...".format(node_a.data.name, node_b.data.name))
         #TODO: Prioritize components whose primitive is required
         comp_c_data, dead = merge_duplicate(node_a, node_b)
-        marked_for_deletion.append(dead)
+        marked_for_deletion.append(node_b.data.file_id)
         item.replace_component(
             comp_c_data['name'],
             comp_c_data['id'],
@@ -159,11 +167,13 @@ def merge_duplicate(node_a, node_b):
         comp_id = name + node_a.identifier
         primitive = component_a.primitive_shape
         dead = component_b.file_id
+        print("Flagging {} for death...".format(component_b.name))
     else:
         name = component_b.name
         comp_id = name + node_b.identifier
         primitive = component_b.primitive_shape
         dead = component_a.file_id
+        print("Flagging {} for death...".format(component_a.name))
     return_data['name'] = name
     return_data['id'] = comp_id
     return_data['primitive'] = primitive

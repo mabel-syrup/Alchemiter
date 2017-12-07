@@ -1,5 +1,5 @@
 from tkinter import *
-from AlchemyGlobal import items
+from AlchemyGlobal import items, get_item_from_name
 from Alchemization import alchemize
 
 
@@ -13,6 +13,8 @@ class AlchemyGUI:
 
     method_button = None
 
+    new_item = None
+
     def __init__(self, master):
 
         frame = Frame(master)
@@ -24,7 +26,7 @@ class AlchemyGUI:
         left_list_title = Label(left_list, justify=CENTER, text="SELECT ITEM A", fg="#67db74", font=("Hobo", 14))
         left_list_title.pack(side=TOP)
 
-        self.left_item_list = Listbox(left_list, width=15, borderwidth=0, fg="#67db74", font=("Hobo", 14), selectbackground="#67db74", exportselection=0)
+        self.left_item_list = Listbox(left_list, width=15, borderwidth=0, fg="#67db74", font=("Hobo", 14), selectbackground="#67db74", exportselection=0, activestyle=NONE, highlightthickness=0)
         self.left_item_list.pack(side=TOP, fill=Y, expand=1)
 
         alchemy_frame = Frame(frame)
@@ -36,15 +38,10 @@ class AlchemyGUI:
         right_list_title = Label(right_list, justify=CENTER, text="SELECT ITEM B", fg="#67db74", font=("Hobo", 14))
         right_list_title.pack(side=TOP)
 
-        self.right_item_list = Listbox(right_list, width=15, borderwidth=0, fg="#67db74", font=("Hobo", 14), selectbackground="#67db74", exportselection=0)
+        self.right_item_list = Listbox(right_list, width=15, borderwidth=0, fg="#67db74", font=("Hobo", 14), selectbackground="#67db74", exportselection=0, activestyle=NONE, highlightthickness=0)
         self.right_item_list.pack(side=TOP, fill=Y, expand=1)
 
-        print("Adding items to GUI item list...")
-        for item in items:
-            print("Adding {}".format(item.name))
-            self.left_item_list.insert(END, item.name.upper())
-            self.right_item_list.insert(END, item.name.upper())
-
+        self.populate_lists()
         # bg="#d6d6d6"
 
         # Alchemy controls
@@ -72,27 +69,68 @@ class AlchemyGUI:
         )
         self.alchemize_button.pack()
 
+        self.rename_button = Button(alchemy_frame, text="NAME", fg="#67db74", width=20, height=1, font=("Hobo", 14), bd=0, state=DISABLED, command=self.name_item)
+        self.rename_button.pack()
+
+        self.name_entry_string = StringVar()
+        self.name_entry = Entry(alchemy_frame, textvariable=self.name_entry_string, fg="#67db74", bg="white", readonlybackground="#67db74", width=20, font=("Hobo", 24), bd=0, justify=LEFT, state="readonly")
+        self.name_entry.pack()
+        self.name_entry_string.set("")
 
         #Results field
         self.result = StringVar()
-        self.result_build = Label(alchemy_frame, textvariable=self.result, fg="#67db74", bg="white", width=80, height=30, font=("Courier New Bold", 10), bd=0, justify=LEFT)
+        self.result_build = Label(alchemy_frame, textvariable=self.result, fg="#67db74", bg="white", width=80, height=25, font=("Courier New Bold", 10), bd=0, justify=LEFT)
         self.result_build.pack(pady=5)
         self.result.set("")
 
         self.abilities = StringVar()
-        self.result_abilities = Label(alchemy_frame, textvariable=self.abilities, fg="#67db74", bg="white", width=80, height=10, font=("Courier New Bold", 10), bd=0, justify=LEFT, wraplength=600)
+        self.result_abilities = Label(alchemy_frame, textvariable=self.abilities, fg="#67db74", bg="white", width=80, height=5, font=("Courier New Bold", 10), bd=0, justify=LEFT, wraplength=600)
         self.result_abilities.pack()
         self.abilities.set("")
 
+        self.save_button = Button(alchemy_frame, text="SAVE", justify=CENTER, width=10, height=2, bg="#67db74", fg="white", font=("Hobo", 24), bd=0, command=self.save_item, state=DISABLED)
+        self.save_button.pack()
+
         self.poll()
 
+    def save_item(self):
+        if self.new_item.name == "Temp_Name":
+            return
+        items.append(self.new_item)
+        self.save_button.config(state=DISABLED)
+        self.right_item_list.delete(0, END)
+        self.left_item_list.delete(0, END)
+        self.populate_lists()
+
+    def populate_lists(self):
+        print("Adding items to GUI item list...")
+        for item in items:
+            print("Adding {}".format(item.name))
+            self.left_item_list.insert(END, item.name.upper())
+            self.right_item_list.insert(END, item.name.upper())
+
+    def name_item(self):
+        name = self.name_entry_string.get()
+        if name == "":
+            return
+        self.new_item.name = name
+        construct = self.new_item.get_construct()
+        ability_set = self.new_item.get_ability_set()
+        self.result.set(construct)
+        self.abilities.set(ability_set)
+        self.save_button.config(state=ACTIVE)
 
     def get_alchemy(self):
         name_a, name_b = self.parse_selected()
-        construct, ability_set = alchemize(name_a, name_b)
+        self.new_item = alchemize(name_a, name_b)
+        self.save_button.config(state=DISABLED)
+        self.rename_button.config(state=ACTIVE)
+        self.name_entry_string.set("")
+        self.name_entry.config(state=NORMAL, fg="#67db74")
+        construct = self.new_item.get_construct(False)
+        ability_set = self.new_item.get_ability_set(False)
         self.result.set(construct)
         self.abilities.set(ability_set)
-
 
     def swap(self):
         select_a = self.left_item_list.curselection()
@@ -111,9 +149,27 @@ class AlchemyGUI:
         self.selection_changed()
 
     def poll(self):
-        now_a, now_b = self.get_selected()
-        if now_a != self.item_a or now_b != self.item_b:
-            name_a, name_b = self.parse_selected()
+        name_a, name_b = self.parse_selected()
+        if name_a != self.item_a or name_b != self.item_b:
+            print("{} is not {} or {} is not {}".format(name_a, self.item_a, name_b, self.item_b))
+            try:
+                if name_a != self.item_a:
+                    print("{} is not {}".format(name_a, self.item_a))
+                    item_item = get_item_from_name(name_a)
+                    item_name = name_a
+                else:
+                    print("{} is not {}".format(name_b, self.item_b))
+                    item_item = get_item_from_name(name_b)
+                    item_name = name_b
+                self.save_button.config(state=DISABLED)
+                self.rename_button.config(state=DISABLED)
+                self.name_entry.config(state="readonly", fg="white")
+                self.name_entry_string.set(item_name)
+                self.result.set(item_item.get_construct())
+                self.abilities.set(item_item.get_ability_set())
+            except AttributeError:
+                self.name_entry.config(state="readonly", fg="white")
+                self.name_entry_string.set("SELECT AN ITEM")
             self.selection_changed()
             self.item_a = name_a
             self.item_b = name_b

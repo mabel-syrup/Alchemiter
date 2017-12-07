@@ -39,6 +39,14 @@
     "top"   : true,
     "bottom": true
   },
+  "rectangular_platform" : {
+    "north" : true,
+    "east"  : true,
+    "south" : true,
+    "west"  : true,
+    "top"   : true,
+    "bottom": true
+  },
   "logo" : {
     "north" : false,
     "east"  : false,
