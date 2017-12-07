@@ -3,6 +3,7 @@ import AlchemyTypes
 from AlchemyGlobal import items, components, get_seed
 from Loader import load
 from Alchemization import alchemizeAND
+from GUI import begin_interface
 
 
 def main():
@@ -11,10 +12,11 @@ def main():
         print(item.get_construct())
         print(item.get_ability_set())
     items[0].get_save_json()
-    alchemizeAND(items[0], items[1])
-    item_name = input('Item Name?\n>')
-    item = AlchemyObjects.Item(item_name, None)
-    done = False
+    alchemizeAND(items[2], items[1])
+    begin_interface()
+    # item_name = input('Item Name?\n>')
+    # item = AlchemyObjects.Item(item_name, None)
+    done = True
     while not done:
         name = input('Part Name?\n>')
         if name == 'done':
@@ -29,6 +31,6 @@ def main():
                 continue
         else:
             item.add_component(name, None, 'DEBUG', 'DEBUG', [])
-    print(item.get_component_info_list())
+    # print(item.get_component_info_list())
 
 main()

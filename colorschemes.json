@@ -9,19 +9,20 @@
     "secondary" : "green",
     "tertiary" : "white"
   },
-  "felt_itchy" : {
-    "primary" : "green",
-    "secondary" : "yellow",
-    "tertiary" : "green"
+  "halloween" : {
+    "primary" : "black",
+    "secondary" : "orange",
+    "tertiary" : "yellow"
   },
-  "felt_doze" : {
-    "primary" : "green",
-    "secondary" : "blue",
-    "tertiary" : "green"
-  },
-  "felt_trace" : {
+  "christmas_colorful" : {
     "primary" : "green",
     "secondary" : "red",
-    "tertiary" : "green"
+    "tertiary" : "white"
+  },
+  "christmas_elegant" : {
+    "primary" : "white",
+    "secondary" : "yellow",
+    "tertiary" : "blue"
   }
+
 }

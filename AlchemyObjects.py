@@ -41,6 +41,9 @@ class Component:
         self.name = name
         self.ID = component_id
 
+    def get_seed_data(self):
+        return "{}{}{}".format(self.mechanisms, self.item.name, self.name)
+
     def get_anchors(self):
         anchor_list = self.primitive_shape.get_anchors()
         if self.anchor_to_parent_c in anchor_list:
@@ -80,10 +83,14 @@ class Component:
         if available is None:
             available = self.get_anchors()
         anchors = self.get_anchors()
+        anchor_c = self.anchor_to_parent_c
+        if anchor_c not in anchors:
+            anchors.append(anchor_c)
         for anchor in available:
             if anchor in self.get_anchors():
                 anchors.append(anchor)
         index = seed % len(anchors)
+        print("Anchor index is {}".format(index))
         return anchors[index]
 
 
@@ -204,9 +211,20 @@ class Item:
         parent_node = self.c_tree.parent(node_id)
         return parent_node.identifier
 
-    def add_component(self, name, comp_id, parent_id, anchor_p, anchor_c, comp_mechanisms, primitive, image_path=None, mode=None):
+    def replace_component(self, name, file_id, node_id, comp_mechanisms, primitive, image_path=None, mode=None):
+        this_node = self.c_tree.get_node(node_id)
+        this_node.tag = name
+        anchor_c = this_node.data.anchor_to_parent_c
+        anchor_p = this_node.data.anchor_to_parent_p
+        component = Component(self, node_id, name, file_id, image_path, mode)
+        component.set_anchor_points(anchor_c, anchor_p)
+        component.set_mechanisms(comp_mechanisms)
+        component.set_primitive(primitive)
+        this_node.data = component
+
+    def add_component(self, name, file_id, parent_id, anchor_p, anchor_c, comp_mechanisms, primitive, image_path=None, mode=None):
         this_node = Node(name)
-        component = Component(self, this_node.identifier, name, comp_id, image_path, mode)
+        component = Component(self, this_node.identifier, name, file_id, image_path, mode)
         component.set_anchor_points(anchor_p, anchor_c)
         component.set_mechanisms(comp_mechanisms)
         component.set_primitive(primitive)
@@ -223,7 +241,7 @@ class Item:
         ability_names = list(abilities.keys())
         for ability_name in ability_names:
             ability = abilities[ability_name]
-            acceptable = ability.meets_requirements(mechs)
+            acceptable = ability.meets_requirements(mechs, self.c_tree)
             if acceptable is not None:
                 comp_list = []
                 for mech in acceptable:

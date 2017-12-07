@@ -21,7 +21,7 @@
     "name" : "handle",
     "material" : "wood",
     "primitive" : "rod",
-    "mechanisms" : ["handle"],
+    "mechanisms" : ["grip"],
     "properties" : [],
     "image_file" : "handle_001",
     "image_mode" : 2
@@ -39,7 +39,7 @@
     "name" : "phone",
     "material" : "aluminum",
     "primitive" : "cube",
-    "mechanisms" : ["computer_light", "speaker", "microphone"],
+    "mechanisms" : ["computer_light", "speaker", "microphone", "grip"],
     "properties" : [],
     "image_file" : "phone_000",
     "image_mode" : 0

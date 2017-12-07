@@ -176,11 +176,11 @@ class Ability:
         self.requirements = new_reqs
         self.behaviors = behaviors
 
-    def meets_requirements(self, in_mechs):
+    def meets_requirements(self, in_mechs, c_tree):
         acceptable = False
         acceptable_list = []
         for req in self.requirements:
-            if req.is_acceptable(in_mechs):
+            if req.is_acceptable(in_mechs, c_tree):
                 acceptable = True
                 acceptable_list = req.get_acceptable_components(in_mechs)
         if acceptable:
@@ -196,9 +196,11 @@ class AbilityRequirement:
     def __init__(self, req_all, req_any, caveats):
         self.req_all = req_all
         self.req_any = req_any
-        self.caveats = caveats
+        self.caveats = []
+        for caveat in caveats:
+            self.caveats.append(Caveat(caveat['part'], caveat['statements']))
 
-    def is_acceptable(self, in_mechs):
+    def is_acceptable(self, in_mechs, c_tree):
         acceptable = False
         for req in self.req_all:
             if req not in in_mechs:
@@ -206,8 +208,17 @@ class AbilityRequirement:
         for req in self.req_any:
             if req in in_mechs:
                 acceptable = True
-        # TODO: Implement Caveats
-        return acceptable
+
+        caveats_acceptable = False
+        print("Evaluating caveats...")
+        for caveat in self.caveats:
+            print("Evaluating {}".format(caveat.statements))
+            if caveat.meets_statements(c_tree):
+                caveats_acceptable = True
+        if len(self.caveats) < 1:
+            caveats_acceptable = True
+
+        return acceptable and caveats_acceptable
 
     def get_acceptable_components(self, in_mechs):
         optional_list = []
@@ -220,6 +231,72 @@ class AbilityRequirement:
         for req in optional_list:
             out_list.append(req)
         return out_list
+
+
+class Caveat:
+    part = None
+    statements = []
+
+    def __init__(self, part, statements):
+        self.part = part
+        self.statements = statements
+
+    def meets_statements(self, c_tree):
+        print("Getting candidates for '{}'...".format(self.part))
+        part_candidates = self.get_candidates(c_tree, mechanism=self.part)
+        print("Candidates: {}".format(part_candidates))
+        meets_reqs = True
+        for statement in self.statements:
+
+            meets_statement = self.evaluate_statement(statement, part_candidates, c_tree)
+            if not meets_statement:
+                meets_reqs = False
+        return meets_reqs
+
+    def get_candidates(self, c_tree, mechanism=None, primitive=None):
+        part_candidates = []
+        if mechanism is None and primitive is None:
+            print("ERROR: Candidate selection cannot be passed NO mechanism AND NO primitive.")
+            return part_candidates
+        if mechanism is not None and primitive is not None:
+            print("ERROR: Candidate selection cannot be passed a mechanism AND a primitive.")
+            return part_candidates
+        nodes = c_tree.all_nodes()
+        for node in nodes:
+            if mechanism is not None and mechanism in node.data.mechanisms:
+                part_candidates.append(node.identifier)
+            if primitive is not None and primitive == node.data.primitive_shape.name:
+                part_candidates.append(node.identifier)
+        return part_candidates
+
+    def evaluate_statement(self, statement_in, part_candidates, c_tree):
+        statement = statement_in['statement']
+        value = statement_in['value']
+
+        if statement.startswith("child_of"):
+            print("{} must be child of {}".format(self.part, value))
+            if statement == "child_of_mech":
+                print("Searching mechanisms for {}...".format(value))
+                candidates = self.get_candidates(c_tree, mechanism=value)
+            else:
+                print("Searching primitives for {}...".format(value))
+                candidates = self.get_candidates(c_tree, primitive=value)
+            if len(candidates) < 1:
+                print("Nothing found.".format(value))
+                return False
+            for candidate in candidates:
+                cand_tree = c_tree.subtree(candidate)
+                for part in part_candidates:
+                    print("Trying '{} is child of {}'...".format(self.part, c_tree.get_node(candidate).data.name))
+                    if cand_tree.contains(part) and part != candidate:
+                        print("True.")
+                        return True
+                    else:
+                        print("False.")
+            print("{} cannot be child of {}.".format(self.part, value))
+            return False
+        return True
+
 
 
 def get_ability_name(ability):

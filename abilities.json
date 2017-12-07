@@ -48,13 +48,19 @@
     "flavor" : "attack using blunt force",
     "requirements" : [
       {
-        "all" : ["handle"],
+        "all" : ["grip"],
         "any" : ["head_block"],
         "caveats" : [
           {
             "part" : "head_block",
             "statements" : [
-              {"statement" : "child_of", "value" : "handle"}
+              {"statement" : "child_of_mech", "value" : "grip"}
+            ]
+          },
+          {
+            "part" : "head_block",
+            "statements" : [
+              {"statement" : "child_of_primitive", "value" : "rod"}
             ]
           }
         ]
