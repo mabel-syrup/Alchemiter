@@ -203,13 +203,17 @@ class AbilityRequirement:
 
     def is_acceptable(self, in_mechs, c_tree):
         acceptable = False
+        #print("In mechs: {}".format(in_mechs))
         for req in self.req_all:
             if req not in in_mechs:
                 return False
         for req in self.req_any:
             if req in in_mechs:
                 acceptable = True
-
+        if len(self.req_any) < 1:
+            acceptable = True
+        if not acceptable:
+            return False
         caveats_acceptable = False
         print("Evaluating caveats...")
         for caveat in self.caveats:
@@ -217,8 +221,9 @@ class AbilityRequirement:
             if caveat.meets_statements(c_tree):
                 caveats_acceptable = True
         if len(self.caveats) < 1:
+            print("No caveats.")
             caveats_acceptable = True
-
+        print("Acceptable: {}".format(acceptable and caveats_acceptable))
         return acceptable and caveats_acceptable
 
     def get_acceptable_components(self, in_mechs):

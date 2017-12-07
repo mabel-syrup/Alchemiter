@@ -97,5 +97,32 @@
     "properties" : [],
     "image_file" : "keyboard_000",
     "image_mode" : 0
+  },
+  "pencil_000": {
+    "name" : "pencil",
+    "material" : "wood",
+    "primitive" : "rod",
+    "mechanisms" : ["grip"],
+    "properties" : [],
+    "image_file" : "pencil_000",
+    "image_mode" : 0
+  },
+  "tip_000": {
+    "name" : "tip",
+    "material" : "graphite",
+    "primitive" : "spike",
+    "mechanisms" : ["puncture", "mark"],
+    "properties" : [],
+    "image_file" : "tip_000",
+    "image_mode" : 0
+  },
+  "eraser_000": {
+    "name" : "eraser",
+    "material" : "rubber",
+    "primitive" : "rod",
+    "mechanisms" : [],
+    "properties" : [],
+    "image_file" : "eraser_000",
+    "image_mode" : 0
   }
 }

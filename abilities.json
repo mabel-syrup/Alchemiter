@@ -67,5 +67,54 @@
       }
     ],
     "behaviors" : []
+  },
+  "mark" : {
+    "flavor" : "draw and write",
+    "requirements" : [
+      {
+        "all" : ["mark"],
+        "any" : [],
+        "caveats" : [
+        ]
+      }
+    ],
+    "behaviors" : []
+  },
+  "stab" : {
+    "flavor" : "attack using puncturing",
+    "requirements" : [
+      {
+        "all" : ["puncture"],
+        "any" : [],
+        "caveats" : [
+          {
+            "part" : "puncture",
+            "statements" : [
+              {"statement" : "child_of_mech", "value" : "grip"}
+            ]
+          }
+        ]
+      }
+    ],
+    "behaviors" : []
+  },
+  "impale" : {
+    "flavor" : "attack using impalement",
+    "requirements" : [
+      {
+        "all" : ["puncture", "head_block", "grip"],
+        "any" : [],
+        "caveats" : [
+          {
+            "part" : "puncture",
+            "statements" : [
+              {"statement" : "child_of_mech", "value" : "head_block"},
+              {"statement" : "child_of_mech", "value" : "grip"}
+            ]
+          }
+        ]
+      }
+    ],
+    "behaviors" : []
   }
 }

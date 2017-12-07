@@ -69,5 +69,15 @@
     "allows" : [
       "blunt_force_attack"
     ]
+  },
+  "puncture": {
+    "requires_any" : [],
+    "requires_all" : [],
+    "allows" : []
+  },
+  "mark": {
+    "requires_any" : [],
+    "requires_all" : [],
+    "allows" : []
   }
 }

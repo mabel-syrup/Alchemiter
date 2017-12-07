@@ -62,5 +62,13 @@
     "west"  : false,
     "top"   : false,
     "bottom": true
+  },
+  "spike" : {
+    "north" : false,
+    "east"  : false,
+    "south" : false,
+    "west"  : false,
+    "top"   : false,
+    "bottom": true
   }
 }

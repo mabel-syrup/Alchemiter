@@ -27,5 +27,13 @@
       ]}},
       {"keyboard_000": {"data" : ["top","bottom"]}}
     ]}}
+  },
+  "pencil" : {
+    "color scheme" : "Yellow",
+    "theme" : "School",
+    "tree" : {"pencil_000" : {"data":  ["Root","Root"], "children" : [
+      {"tip_000": {"data" : ["top","bottom"]}},
+      {"eraser_000": {"data" : ["bottom","bottom"]}}
+    ]}}
   }
 }
