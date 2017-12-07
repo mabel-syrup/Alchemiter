@@ -2,7 +2,7 @@ from tkinter import *
 from AlchemyGlobal import items, get_item_from_name
 from Alchemization import alchemize
 
-FONT = "Courier New Bold" #Hobo
+FONT = "Courier New Bold"
 
 class AlchemyGUI:
     method = "AND"
