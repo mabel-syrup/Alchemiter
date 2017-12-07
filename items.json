@@ -21,8 +21,9 @@
     "color scheme" : "Silver",
     "theme" : "Apple",
     "tree" : {"laptop_000" : {"data":  ["Root","Root"], "children" : [
-      {"screen_001": {"data" : ["north","bottom"], "children": [
-        {"logo_000": {"data" : ["north","bottom"]}}
+      {"lid_000": {"data" : ["north","bottom"], "children": [
+        {"logo_000": {"data" : ["north","bottom"]}},
+        {"screen_001": {"data" : ["south","bottom"]}}
       ]}},
       {"keyboard_000": {"data" : ["top","bottom"]}}
     ]}}

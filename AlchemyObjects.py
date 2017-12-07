@@ -221,7 +221,7 @@ class Item:
         anchor_c = this_node.data.anchor_to_parent_c
         anchor_p = this_node.data.anchor_to_parent_p
         component = Component(self, node_id, name, file_id, image_path, mode)
-        component.set_anchor_points(anchor_c, anchor_p)
+        component.set_anchor_points(anchor_p, anchor_c)
         component.set_mechanisms(comp_mechanisms)
         component.set_primitive(primitive)
         this_node.data = component

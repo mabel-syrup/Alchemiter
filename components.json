@@ -47,7 +47,7 @@
   "screen_000": {
     "name" : "touchscreen",
     "material" : "glass",
-    "primitive" : "plane",
+    "primitive" : "open_plane",
     "mechanisms" : ["computer_input", "input", "screen"],
     "properties" : [],
     "image_file" : "screen_000",
@@ -71,10 +71,19 @@
     "image_file" : "laptop_000",
     "image_mode" : 0
   },
+  "lid_000": {
+    "name" : "lid",
+    "material" : "aluminum",
+    "primitive" : "rectangular_platform",
+    "mechanisms" : [],
+    "properties" : [],
+    "image_file" : "lid_000",
+    "image_mode" : 0
+  },
   "screen_001": {
     "name" : "screen",
     "material" : "plastic",
-    "primitive" : "plane",
+    "primitive" : "open_plane",
     "mechanisms" : ["screen"],
     "properties" : [],
     "image_file" : "screen_001",
@@ -83,7 +92,7 @@
   "keyboard_000": {
     "name" : "keyboard",
     "material" : "plastic",
-    "primitive" : "logo",
+    "primitive" : "open_plane",
     "mechanisms" : ["input", "computer_input"],
     "properties" : [],
     "image_file" : "keyboard_000",

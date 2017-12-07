@@ -33,8 +33,8 @@ def alchemizeAND(itemA, itemB):
     itemC = Item("Temp_Name", None)
     itemC.c_tree = treeC
     nodes_b = treeB.all_nodes()
-    nodes_b = merge_from_primitive_overlap(itemC, treeC, nodes_b)
     nodes_b = merge_from_mechanism_overlap(itemC, treeC, nodes_b)
+    nodes_b = merge_from_primitive_overlap(itemC, treeC, nodes_b)
     comps = []
     for node_b in nodes_b:
         comps.append(node_b.data)

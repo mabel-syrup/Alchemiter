@@ -39,6 +39,14 @@
     "top"   : true,
     "bottom": true
   },
+  "open_plane" : {
+    "north" : false,
+    "east"  : false,
+    "south" : false,
+    "west"  : false,
+    "top"   : false,
+    "bottom": true
+  },
   "rectangular_platform" : {
     "north" : true,
     "east"  : true,
