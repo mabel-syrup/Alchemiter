@@ -94,8 +94,17 @@ class Primitive:
     node_top = False
     node_bottom = False
 
-    def __init__(self, name, north, east, south, west, top, bottom):
+    scale_x = 0.0
+    scale_y = 0.0
+    scale_z = 0.0
+
+    def __init__(self, name, x, y, z, north, east, south, west, top, bottom):
         self.name = name
+
+        self.scale_x = x
+        self.scale_y = y
+        self.scale_z = z
+
         self.node_north = north
         self.node_south = east
         self.node_east = south
@@ -118,6 +127,9 @@ class Primitive:
         if self.node_bottom:
             anchors.append("bottom")
         return anchors
+
+    def get_bounds(self, scale=1):
+        return self.scale_x*scale, self.scale_y*scale, self.scale_z*scale
 
 
 class Mechanism:

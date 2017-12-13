@@ -1,8 +1,10 @@
 from tkinter import *
 from AlchemyGlobal import items, get_item_from_name
 from Alchemization import alchemize
+from VisualEngine import draw_item_bounds
+from Renderer import render_item, create_object
 
-FONT = "Courier New Bold"
+FONT = "Hobo"
 
 class AlchemyGUI:
     method = "AND"
@@ -79,9 +81,12 @@ class AlchemyGUI:
 
         #Results field
         self.result = StringVar()
-        self.result_build = Label(alchemy_frame, textvariable=self.result, fg="#67db74", bg="white", width=80, height=25, font=("Courier New Bold", 10), bd=0, justify=LEFT)
-        self.result_build.pack(pady=5)
+        #self.result_build = Label(alchemy_frame, textvariable=self.result, fg="#67db74", bg="white", width=80, height=25, font=("Courier New Bold", 10), bd=0, justify=LEFT)
+        #self.result_build.pack(pady=5)
         self.result.set("")
+
+        self.result_canvas = Canvas(alchemy_frame, bg="white", width=800, height=250, bd=0)
+        self.result_canvas.pack()
 
         self.abilities = StringVar()
         self.result_abilities = Label(alchemy_frame, textvariable=self.abilities, fg="#67db74", bg="white", width=80, height=5, font=("Courier New Bold", 10), bd=0, justify=LEFT, wraplength=600)
@@ -131,6 +136,21 @@ class AlchemyGUI:
         ability_set = self.new_item.get_ability_set(False)
         self.result.set(construct)
         self.abilities.set(ability_set)
+        test_node = self.new_item.c_tree.get_node(self.new_item.c_tree.root)
+        test_comp = test_node.data
+        self.render = create_object(self.new_item, 400, 125)
+        render_item(self.result_canvas, self.render)
+        #self.update()
+        #draw_item_bounds(self.result_canvas, self.new_item, 400, 125)
+
+    def update(self):
+        canvas_items = self.result_canvas.find_all()
+        for item in canvas_items:
+            self.result_canvas.delete(item)
+        self.render.rotate(0, 0, 5)
+        render_item(self.result_canvas, self.render)
+        root.after(100000, self.update())
+
 
     def swap(self):
         select_a = self.left_item_list.curselection()

@@ -29,7 +29,7 @@
   "head_000": {
     "name" : "head",
     "material" : "steel",
-    "primitive" : "cube",
+    "primitive" : "elongated_cube",
     "mechanisms" : ["head_block"],
     "properties" : [],
     "image_file" : "head_000",
@@ -123,6 +123,15 @@
     "mechanisms" : [],
     "properties" : [],
     "image_file" : "eraser_000",
+    "image_mode" : 0
+  },
+  "box_000": {
+    "name" : "cube",
+    "material" : "plastic",
+    "primitive" : "cube",
+    "mechanisms" : [],
+    "properties" : [],
+    "image_file" : "perfectly_generic_object_000",
     "image_mode" : 0
   }
 }

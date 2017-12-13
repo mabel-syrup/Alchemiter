@@ -35,5 +35,10 @@
       {"tip_000": {"data" : ["top","bottom"]}},
       {"eraser_000": {"data" : ["bottom","bottom"]}}
     ]}}
+  },
+  "cube" : {
+    "color scheme" : "Green",
+    "theme" : "Generic",
+    "tree" : {"box_000" : {"data":  ["Root","Root"]}}
   }
 }

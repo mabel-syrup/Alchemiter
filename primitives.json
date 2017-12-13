@@ -1,5 +1,8 @@
 {
   "cup" : {
+    "x" : 1,
+    "y" : 1,
+    "z" : 1,
     "north" : true,
     "east"  : true,
     "south" : true,
@@ -8,6 +11,9 @@
     "bottom": true
   },
   "cube" : {
+    "x" : 1,
+    "y" : 1,
+    "z" : 1,
     "north" : true,
     "east"  : true,
     "south" : true,
@@ -16,6 +22,9 @@
     "bottom": true
   },
   "arch" : {
+    "x" : 1,
+    "y" : 0.3,
+    "z" : 1,
     "north" : false,
     "east"  : false,
     "south" : false,
@@ -24,6 +33,9 @@
     "bottom": true
   },
   "rod" : {
+    "x" : 0.3,
+    "y" : 0.3,
+    "z" : 1,
     "north" : false,
     "east"  : false,
     "south" : false,
@@ -32,6 +44,9 @@
     "bottom": true
   },
   "plane" : {
+    "x" : 1,
+    "y" : 1,
+    "z" : 0,
     "north" : false,
     "east"  : false,
     "south" : false,
@@ -40,6 +55,9 @@
     "bottom": true
   },
   "open_plane" : {
+    "x" : 1,
+    "y" : 1,
+    "z" : 0,
     "north" : false,
     "east"  : false,
     "south" : false,
@@ -48,6 +66,9 @@
     "bottom": true
   },
   "rectangular_platform" : {
+    "x" : 1,
+    "y" : 0.5,
+    "z" : 0.1,
     "north" : true,
     "east"  : true,
     "south" : true,
@@ -56,6 +77,9 @@
     "bottom": true
   },
   "logo" : {
+    "x" : 1,
+    "y" : 1,
+    "z" : 0,
     "north" : false,
     "east"  : false,
     "south" : false,
@@ -64,11 +88,25 @@
     "bottom": true
   },
   "spike" : {
+    "x" : 1,
+    "y" : 1,
+    "z" : 1,
     "north" : false,
     "east"  : false,
     "south" : false,
     "west"  : false,
     "top"   : false,
+    "bottom": true
+  },
+  "elongated_cube" : {
+    "x" : 1,
+    "y" : 0.5,
+    "z" : 0.5,
+    "north" : true,
+    "east"  : true,
+    "south" : true,
+    "west"  : true,
+    "top"   : true,
     "bottom": true
   }
 }

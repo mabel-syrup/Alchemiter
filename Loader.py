@@ -21,7 +21,7 @@ def load():
     for prim_name in prim_names:
         json_prim = primitives_json[prim_name]
         primitives[prim_name] = \
-            Primitive(prim_name, json_prim['north'], json_prim['east'], json_prim['south'], json_prim['west'], json_prim['top'], json_prim['bottom'])
+            Primitive(prim_name, json_prim['x'], json_prim['y'], json_prim['z'], json_prim['north'], json_prim['east'], json_prim['south'], json_prim['west'], json_prim['top'], json_prim['bottom'])
     # Load Abilities
     ability_names = abilities_json.keys()
     for ability_name in ability_names:
