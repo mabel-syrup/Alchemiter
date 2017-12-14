@@ -46,7 +46,7 @@
   "plane" : {
     "x" : 1,
     "y" : 1,
-    "z" : 0,
+    "z" : 0.001,
     "north" : false,
     "east"  : false,
     "south" : false,
@@ -57,7 +57,7 @@
   "open_plane" : {
     "x" : 1,
     "y" : 1,
-    "z" : 0,
+    "z" : 0.001,
     "north" : false,
     "east"  : false,
     "south" : false,
@@ -79,7 +79,7 @@
   "logo" : {
     "x" : 1,
     "y" : 1,
-    "z" : 0,
+    "z" : 0.001,
     "north" : false,
     "east"  : false,
     "south" : false,
@@ -102,6 +102,17 @@
     "x" : 1,
     "y" : 0.5,
     "z" : 0.5,
+    "north" : true,
+    "east"  : true,
+    "south" : true,
+    "west"  : true,
+    "top"   : true,
+    "bottom": true
+  },
+  "hinge" : {
+    "x" : 1,
+    "y" : 0.1,
+    "z" : 0.1,
     "north" : true,
     "east"  : true,
     "south" : true,

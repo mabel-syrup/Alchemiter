@@ -1,5 +1,5 @@
 
-from math import cos, sin, atan2, sqrt, degrees, radians, acos, tan, atan, asin
+from math import cos, sin, atan2, sqrt, degrees, radians, acos, tan, atan, asin, inf
 
 SCALE = 20
 CAMERA_VECTOR = None
@@ -13,16 +13,14 @@ class Cube:
     length = 0
     width = 0
     height = 0
-    faces = []
-    vertices = []
 
     def __init__(self, l, w, h):
         self.length = l
         self.width = w
         self.height = h
-
+        self.vertices = []
         self.vertices = self.calculate_vertices(self.length / 2, self.width / 2, self.height / 2)
-
+        self.faces = []
         # NESWTB
         # North
         self.add_face("North", 1, 2, 6, 5)
@@ -36,6 +34,10 @@ class Cube:
         self.add_face("Top", 4, 5, 6, 7)
         # Bottom
         self.add_face("Bottom", 0, 1, 2, 3)
+
+    def scale(self, factor):
+        for vertex in self.vertices:
+            vertex.scale(factor)
 
     def rotate(self, r_x, r_y, r_z):
         for vert in self.vertices:
@@ -72,6 +74,9 @@ class Cube:
         #self.rotate(0, 0, -rot_z)
         #self.rotate(-rot_x, 0, 0)
 
+    def get_attachment_for_face(self, face):
+        return self.faces[face].get_attachment()
+
     def rotate_local(self, r_x, r_y, r_z):
         axes = self.get_local_axes()
 
@@ -105,6 +110,9 @@ class Cube:
         north = self.get_local_axes()[1]
         return north
 
+    def get_face_anchor(self, face):
+        return self.faces[face].get_anchor()
+
     def get_axis_offset(self, axis):
         axes = self.get_local_axes()
         if axis == "x":
@@ -119,7 +127,9 @@ class Cube:
         return [x, y, z]
 
     def draw(self, canvas, x, y):
+        #print("RENDERING COMPONENT: {} FACES".format(len(self.faces)))
         for face in self.faces:
+            #print("RENDERING {}".format(face.name.upper()))
             face.draw(canvas, x, y)
             #face.draw_two_axis(canvas)
 
@@ -162,11 +172,21 @@ class Face:
         anchor = Vector(total_x / verts, total_y / verts, total_z / verts)
         return anchor
 
+    def get_attachment(self):
+        a_x, a_y, a_z = self.vertices[0].get()
+        b_x, b_y, b_z = self.vertices[1].get()
+        c_x, c_y, c_z = self.vertices[2].get()
+
+        side_a = sqrt((a_x - b_x) ** 2 + (a_y - b_y) ** 2 + (a_z - b_z) ** 2)
+        side_b = sqrt((c_x - b_x) ** 2 + (c_y - b_y) ** 2 + (c_z - b_z) ** 2)
+        return get_smallest([side_a, side_b])
+
+
     def get_normal(self):
         anchor = self.get_anchor()
         x, y, z = anchor.get()
         greatest = get_greatest([x, y, z])
-        factor = 1 / greatest
+        factor = 1 / greatest if greatest != 0 else 1
 
         x += (x * 1) * factor
         y += (y * 1) * factor
@@ -326,6 +346,11 @@ class Vector:
         self.x = x
         self.y = y
         self.z = z
+
+    def scale(self, factor):
+        self.x = self.x * factor
+        self.y = self.y * factor
+        self.z = self.z * factor
 
     def rotate(self, r_x, r_y, r_z):
         r_x = radians(r_x)
@@ -492,6 +517,13 @@ def get_negative(number):
         return 1
     return number / abs(number)
 
+def get_smallest(in_list):
+    smallest = inf
+    for number in in_list:
+        if abs(number) < smallest:
+            smallest = abs(number)
+    #print("Of {}, greatest value is {}".format(in_list, greatest))
+    return smallest
 
 def get_greatest(in_list):
     greatest = 0

@@ -1,10 +1,10 @@
 from tkinter import *
-from AlchemyGlobal import items, get_item_from_name
+from AlchemyGlobal import items, get_item_from_name, FONT
 from Alchemization import alchemize
 from VisualEngine import draw_item_bounds
 from Renderer import render_item, create_object
 
-FONT = "Hobo"
+ZOOM_INCREMENT = 0.5
 
 class AlchemyGUI:
     method = "AND"
@@ -16,6 +16,11 @@ class AlchemyGUI:
     method_button = None
 
     new_item = None
+
+    rotation = 0
+    zoom = 1
+
+    diagram = False
 
     def __init__(self, master):
 
@@ -85,7 +90,40 @@ class AlchemyGUI:
         #self.result_build.pack(pady=5)
         self.result.set("")
 
-        self.result_canvas = Canvas(alchemy_frame, bg="white", width=800, height=250, bd=0)
+        render_control_frame = Frame(alchemy_frame)
+        render_control_frame.pack(pady=5)
+
+        self.rot_cw_button = Button(
+            render_control_frame, text="<", justify=CENTER, width=2, height=1, bg="#67db74", fg="white",
+            font=(FONT, 12), bd=0,
+            command=self.rotate_cw
+        )
+        self.rot_cw_button.pack(side=LEFT)
+
+        self.zoom_minus = Button(
+            render_control_frame, text="-", justify=CENTER, width=2, height=1, bg="#67db74", fg="white", font=(FONT, 12), bd=0,
+            command=self.zoom_out
+        )
+        self.zoom_minus.pack(side=LEFT)
+
+        self.diagram_button = Button(
+            render_control_frame, text="LABEL", justify=CENTER, width=10, height=1, bg="#67db74", fg="white", font=(FONT, 12), bd=0, command=self.toggle_diagram
+        )
+        self.diagram_button.pack(side=LEFT, padx=2)
+
+        self.zoom_plus = Button(
+            render_control_frame, text="+", justify=CENTER, width=2, height=1, bg="#67db74", fg="white", font=(FONT, 12), bd=0, command=self.zoom_in
+        )
+        self.zoom_plus.pack(side=LEFT)
+
+        self.rot_ccw_button = Button(
+            render_control_frame, text=">", justify=CENTER, width=2, height=1, bg="#67db74", fg="white",
+            font=(FONT, 12), bd=0,
+            command=self.rotate_ccw
+        )
+        self.rot_ccw_button.pack(side=LEFT)
+
+        self.result_canvas = Canvas(alchemy_frame, bg="white", width=642, height=250, bd=0)
         self.result_canvas.pack()
 
         self.abilities = StringVar()
@@ -125,6 +163,42 @@ class AlchemyGUI:
         self.abilities.set(ability_set)
         self.save_button.config(state=ACTIVE)
 
+    def zoom_in(self):
+        self.zoom += ZOOM_INCREMENT
+        self.render_selection()
+
+    def zoom_out(self):
+        if self.zoom > ZOOM_INCREMENT:
+            self.zoom -= ZOOM_INCREMENT
+            self.render_selection()
+
+    def toggle_diagram(self):
+        if self.diagram:
+            self.diagram = False
+        else:
+            self.diagram = True
+        self.render_selection()
+
+    def render_selection(self):
+        canvas_items = self.result_canvas.find_all()
+        for item in canvas_items:
+            self.result_canvas.delete(item)
+        self.render = create_object(self.render_item, 321, 125, self.rotation, self.zoom)
+        render_item(self.result_canvas, self.render, self.diagram)
+
+    def rotate_cw(self):
+        self.rotation -= 90
+        self.render_selection()
+
+    def rotate_ccw(self):
+        self.rotation += 90
+        self.render_selection()
+
+    def rotate(self):
+        self.rotation += 90
+        self.render_selection()
+
+
     def get_alchemy(self):
         name_a, name_b = self.parse_selected()
         self.new_item = alchemize(name_a, name_b)
@@ -134,22 +208,22 @@ class AlchemyGUI:
         self.name_entry.config(state=NORMAL, fg="#67db74")
         construct = self.new_item.get_construct(False)
         ability_set = self.new_item.get_ability_set(False)
+        self.render_item = self.new_item
         self.result.set(construct)
         self.abilities.set(ability_set)
         test_node = self.new_item.c_tree.get_node(self.new_item.c_tree.root)
         test_comp = test_node.data
-        self.render = create_object(self.new_item, 400, 125)
-        render_item(self.result_canvas, self.render)
+        self.render_selection()
         #self.update()
         #draw_item_bounds(self.result_canvas, self.new_item, 400, 125)
 
-    def update(self):
-        canvas_items = self.result_canvas.find_all()
-        for item in canvas_items:
-            self.result_canvas.delete(item)
-        self.render.rotate(0, 0, 5)
-        render_item(self.result_canvas, self.render)
-        root.after(100000, self.update())
+    #def update(self):
+    #    canvas_items = self.result_canvas.find_all()
+    #    for item in canvas_items:
+    #        self.result_canvas.delete(item)
+    #    self.render.rotate(0, 0, 5)
+    #    render_item(self.result_canvas, self.render)
+    #    root.after(100000, self.update())
 
 
     def swap(self):
@@ -181,10 +255,14 @@ class AlchemyGUI:
                     print("{} is not {}".format(name_b, self.item_b))
                     item_item = get_item_from_name(name_b)
                     item_name = name_b
+                self.render_item = item_item
                 self.save_button.config(state=DISABLED)
                 self.rename_button.config(state=DISABLED)
                 self.name_entry.config(state="readonly", fg="white")
                 self.name_entry_string.set(item_name)
+
+                self.render_selection()
+
                 self.result.set(item_item.get_construct())
                 self.abilities.set(item_item.get_ability_set())
             except AttributeError:

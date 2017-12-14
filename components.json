@@ -133,5 +133,14 @@
     "properties" : [],
     "image_file" : "perfectly_generic_object_000",
     "image_mode" : 0
+  },
+  "hinge_000": {
+    "name" : "hinge",
+    "material" : "steel",
+    "primitive" : "hinge",
+    "mechanisms" : [],
+    "properties" : [],
+    "image_file" : "hinge_000",
+    "image_mode" : 0
   }
 }

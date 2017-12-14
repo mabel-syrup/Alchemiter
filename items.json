@@ -21,9 +21,11 @@
     "color scheme" : "Silver",
     "theme" : "Apple",
     "tree" : {"laptop_000" : {"data":  ["Root","Root"], "children" : [
-      {"lid_000": {"data" : ["north","bottom"], "children": [
-        {"logo_000": {"data" : ["north","bottom"]}},
-        {"screen_001": {"data" : ["south","bottom"]}}
+      {"hinge_000": {"data" : ["north","north"], "children": [
+        {"lid_000": {"data" : ["bottom","south"], "children": [
+          {"logo_000": {"data" : ["bottom","bottom"]}},
+          {"screen_001": {"data" : ["top","bottom"]}}
+        ]}}
       ]}},
       {"keyboard_000": {"data" : ["top","bottom"]}}
     ]}}
@@ -40,5 +42,14 @@
     "color scheme" : "Green",
     "theme" : "Generic",
     "tree" : {"box_000" : {"data":  ["Root","Root"]}}
+  },
+  "test top" : {
+    "color scheme" : "Silver",
+    "theme" : "Apple",
+    "tree" : {"laptop_000" : {"data":  ["Root","Root"], "children" : [
+      {"hinge_000": {"data" : ["north","south"], "children" : [
+        {"lid_000": {"data" : ["bottom","south"]}}
+      ]}}
+    ]}}
   }
 }

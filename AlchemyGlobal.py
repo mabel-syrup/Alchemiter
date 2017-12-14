@@ -6,6 +6,8 @@ mechanisms = {}
 primitives = {}
 abilities = {}
 
+FONT = "Consolas"
+
 
 def get_seed(data):
     #print("Raw input data is in form {} : {}".format(type(data), data))
