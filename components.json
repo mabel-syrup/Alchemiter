@@ -142,5 +142,104 @@
     "properties" : [],
     "image_file" : "hinge_000",
     "image_mode" : 0
+  },
+  "soap_bottle_000": {
+    "name" : "bottle",
+    "material" : "plastic",
+    "primitive" : "can",
+    "mechanisms" : ["tank"],
+    "properties" : [],
+    "image_file" : "bottle_000",
+    "image_mode" : 0
+  },
+  "pump_000": {
+    "name" : "pump",
+    "material" : "plastic",
+    "primitive" : "can",
+    "mechanisms" : ["pump_liquid"],
+    "properties" : [],
+    "image_file" : "pump_000",
+    "image_mode" : 0
+  },
+  "spout_000": {
+    "name" : "spout",
+    "material" : "plastic",
+    "primitive" : "rod",
+    "mechanisms" : ["pour_liquid"],
+    "properties" : [],
+    "image_file" : "spout_000",
+    "image_mode" : 0
+  },
+  "tank_000": {
+    "name" : "tank",
+    "material" : "glass",
+    "primitive" : "cube",
+    "mechanisms" : ["tank"],
+    "properties" : [],
+    "image_file" : "tank_000",
+    "image_mode" : 0
+  },
+  "rod_000": {
+    "name" : "rod",
+    "material" : "aluminum",
+    "primitive" : "rod",
+    "mechanisms" : [],
+    "properties" : [],
+    "image_file" : "rod_000",
+    "image_mode" : 0
+  },
+  "fastener_000": {
+    "name" : "fastener",
+    "material" : "aluminum",
+    "primitive" : "cube",
+    "mechanisms" : [],
+    "properties" : [],
+    "image_file" : "fastener_000",
+    "image_mode" : 0
+  },
+  "handle_002": {
+    "name" : "handlebar",
+    "material" : "plastic",
+    "primitive" : "rod",
+    "mechanisms" : ["handle"],
+    "properties" : [],
+    "image_file" : "handle_002",
+    "image_mode" : 0
+  },
+  "pump_001": {
+    "name" : "pump",
+    "material" : "aluminum",
+    "primitive" : "rod",
+    "mechanisms" : ["pump_liquid"],
+    "properties" : [],
+    "image_file" : "pump_001",
+    "image_mode" : 0
+  },
+  "base_000": {
+    "name" : "base",
+    "material" : "plastic",
+    "primitive" : "cube",
+    "mechanisms" : [],
+    "properties" : [],
+    "image_file" : "base_000",
+    "image_mode" : 0
+  },
+  "dial_000": {
+    "name" : "dial",
+    "material" : "plastic",
+    "primitive" : "open_plane",
+    "mechanisms" : ["control"],
+    "properties" : [],
+    "image_file" : "dial_000",
+    "image_mode" : 0
+  },
+  "coil_000": {
+    "name" : "heating coil",
+    "material" : "steel",
+    "primitive" : "open_plane",
+    "mechanisms" : ["heat"],
+    "properties" : [],
+    "image_file" : "coil_000",
+    "image_mode" : 0
   }
 }

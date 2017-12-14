@@ -226,12 +226,12 @@ class AbilityRequirement:
             acceptable = True
         if not acceptable:
             return False
-        caveats_acceptable = False
+        caveats_acceptable = True
         print("Evaluating caveats...")
         for caveat in self.caveats:
             print("Evaluating {}".format(caveat.statements))
-            if caveat.meets_statements(c_tree):
-                caveats_acceptable = True
+            if not caveat.meets_statements(c_tree):
+                caveats_acceptable = False
         if len(self.caveats) < 1:
             print("No caveats.")
             caveats_acceptable = True

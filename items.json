@@ -22,9 +22,9 @@
     "theme" : "Apple",
     "tree" : {"laptop_000" : {"data":  ["Root","Root"], "children" : [
       {"hinge_000": {"data" : ["north","north"], "children": [
-        {"lid_000": {"data" : ["bottom","south"], "children": [
-          {"logo_000": {"data" : ["bottom","bottom"]}},
-          {"screen_001": {"data" : ["top","bottom"]}}
+        {"lid_000": {"data" : ["top","south"], "children": [
+          {"logo_000": {"data" : ["top","bottom"]}},
+          {"screen_001": {"data" : ["bottom","bottom"]}}
         ]}}
       ]}},
       {"keyboard_000": {"data" : ["top","bottom"]}}
@@ -43,13 +43,38 @@
     "theme" : "Generic",
     "tree" : {"box_000" : {"data":  ["Root","Root"]}}
   },
-  "test top" : {
-    "color scheme" : "Silver",
-    "theme" : "Apple",
-    "tree" : {"laptop_000" : {"data":  ["Root","Root"], "children" : [
-      {"hinge_000": {"data" : ["north","south"], "children" : [
-        {"lid_000": {"data" : ["bottom","south"]}}
+  "soap dispenser" : {
+    "color scheme" : "Yellow",
+    "theme" : "Soap",
+    "tree" : {"soap_bottle_000" : {"data":  ["Root","Root"], "children" : [
+      {"pump_000": {"data" : ["top","bottom"], "children" : [
+        {"spout_000" : {"data":  ["south","bottom"]}}
       ]}}
+    ]}}
+  },
+  "fish tank" : {
+    "color scheme" : "Grey",
+    "theme" : "Aquatic",
+    "tree" : {"tank_000" : {"data":  ["Root","Root"]}}
+  },
+  "bike pump" : {
+    "color scheme" : "Grey",
+    "theme" : "Sports",
+    "tree" : {"pump_001" : {"data":  ["Root","Root"], "children" : [
+      {"rod_000": {"data" : ["top","bottom"], "children" : [
+        {"fastener_000": {"data" : ["top","bottom"], "children" : [
+          {"handle_002" : {"data":  ["east","bottom"]}},
+          {"handle_002" : {"data":  ["west","bottom"]}}
+        ]}}
+      ]}}
+    ]}}
+  },
+  "hot plate" : {
+    "color scheme" : "Grey",
+    "theme" : "Cooking",
+    "tree" : {"base_000" : {"data":  ["Root","Root"], "children" : [
+      {"coil_000": {"data" : ["top","bottom"]}},
+      {"dial_000": {"data" : ["south","bottom"]}}
     ]}}
   }
 }

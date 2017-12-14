@@ -58,7 +58,10 @@ class Cube:
         self.rotate(0, 0, -rot_z)
         self.rotate(-rot_x, 0, 0)
         if axis == X:
+            self.rotate(0, 0, -90)
             print("Rotating object by {} on its local X axis...".format(amount))
+            self.rotate(amount, 0, 0)
+            self.rotate(0, 0, 90)
             #self.rotate(amount, 0, 0)
         elif axis == Y:
             print("Rotating object by {} on its local Y axis...".format(amount))

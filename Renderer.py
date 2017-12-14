@@ -81,10 +81,19 @@ def recursive_add_objects(tree, parent, x, y, layer):
         p_x, p_z = parent_vector.get_new_angle()
         c_x, c_z = child_vector.get_new_angle()
         print("Parent Vector: {} ({}, {})\nChild Vector: {} ({}, {})".format(parent_vector_name, p_x, p_z, child_vector_name, c_x, c_z))
-        r_x = (180 - (p_x - c_x)) % 360
-        r_z = (180 - (p_z + c_z)) % 360
-        print("Rotating child by ({}, {})".format(r_x, r_z))
-        child_obj.rotate(r_x, 0, r_z)
+
+        #child_obj.rotate(p_x, 0, p_z)
+        #child_obj.rotate_local(X, p_x)
+        #child_obj.rotate_local(Z, p_z)
+        child_obj.rotate_local(X, c_x)
+        child_obj.rotate_local(Z, c_z)
+        child_obj.rotate_local(X, p_x)
+        child_obj.rotate(0, 0, p_z)
+
+        #r_x = (180 - (p_x - c_x)) % 360
+        #r_z = (180 - (p_z + c_z)) % 360
+        #print("Rotating child by ({}, {})".format(r_x, r_z))
+        #child_obj.rotate(r_x, 0, r_z)
         child_vector = child_obj.get_normal(get_id_from_name(child_vector_name))
         c_v_x, c_v_y, c_v_z = parent_vector.get()
 
@@ -171,6 +180,9 @@ class RenderObject:
         coords = translation.get_dimetric_coord()
         self.x += coords[0]
         self.y += coords[1]
+
+    def rotate_local(self, axis, amount):
+        self.geometry.rot_local(axis, amount)
 
     def rotate(self, x, y, z):
         self.geometry.rotate(x, y, z)

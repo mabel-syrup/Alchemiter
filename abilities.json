@@ -56,7 +56,13 @@
             "statements" : [
               {"statement" : "child_of_mech", "value" : "grip"}
             ]
-          },
+          }
+        ]
+      },
+      {
+        "all" : ["grip"],
+        "any" : ["head_block"],
+        "caveats" : [
           {
             "part" : "head_block",
             "statements" : [
@@ -113,6 +119,73 @@
             ]
           }
         ]
+      }
+    ],
+    "behaviors" : []
+  },
+  "dispense_liquid" : {
+    "flavor" : "dispense stored liquid",
+    "requirements" : [
+      {
+        "all" : ["pump_liquid", "pour_liquid"],
+        "any" : ["tank", "cup", "pool"],
+        "caveats" : [
+          {
+            "part" : "pour_liquid",
+            "statements" : [
+              {"statement" : "child_of_mech", "value" : "pump_liquid"}
+            ]
+          }
+        ]
+      }
+    ],
+    "behaviors" : []
+  },
+  "pump" : {
+    "flavor" : "pump liquids or gases",
+    "requirements" : [
+      {
+        "all" : ["pump_liquid"],
+        "any" : [],
+        "caveats" : []
+      }
+    ],
+    "behaviors" : []
+  },
+  "heat" : {
+    "flavor" : "get extremely hot",
+    "requirements" : [
+      {
+        "all" : ["heat"],
+        "any" : [],
+        "caveats" : []
+      }
+    ],
+    "behaviors" : []
+  },
+  "cook" : {
+    "flavor" : "cook things",
+    "requirements" : [
+      {
+        "all" : ["heat"],
+        "any" : ["control"],
+        "caveats" : []
+      },
+      {
+        "all" : ["computer_input", "heat"],
+        "any" : ["computer_light", "computer"],
+        "caveats" : []
+      }
+    ],
+    "behaviors" : []
+  },
+  "boil" : {
+    "flavor" : "boil stored water",
+    "requirements" : [
+      {
+        "all" : ["heat"],
+        "any" : ["cup", "tank", "pool"],
+        "caveats" : []
       }
     ],
     "behaviors" : []
