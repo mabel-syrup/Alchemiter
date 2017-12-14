@@ -76,8 +76,8 @@ class AlchemyGUI:
         )
         self.alchemize_button.pack()
 
-        self.rename_button = Button(alchemy_frame, text="NAME", fg="#67db74", width=20, height=1, font=(FONT, 14), bd=0, state=DISABLED, command=self.name_item)
-        self.rename_button.pack()
+        self.rename_button = Button(alchemy_frame, text="NAME", width=20, height=1, bg="#67db74", fg="white", font=(FONT, 12), state=DISABLED, bd=0, command=self.name_item)
+        self.rename_button.pack(pady=5)
 
         self.name_entry_string = StringVar()
         self.name_entry = Entry(alchemy_frame, textvariable=self.name_entry_string, fg="#67db74", bg="white", readonlybackground="#67db74", width=20, font=(FONT, 24), bd=0, justify=LEFT, state="readonly")

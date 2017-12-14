@@ -119,7 +119,7 @@
   "eraser_000": {
     "name" : "eraser",
     "material" : "rubber",
-    "primitive" : "rod",
+    "primitive" : "can",
     "mechanisms" : [],
     "properties" : [],
     "image_file" : "eraser_000",
@@ -240,6 +240,33 @@
     "mechanisms" : ["heat"],
     "properties" : [],
     "image_file" : "coil_000",
+    "image_mode" : 0
+  },
+  "bridge_000": {
+    "name" : "bridge",
+    "material" : "plastic",
+    "primitive" : "rod",
+    "mechanisms" : [],
+    "properties" : [],
+    "image_file" : "bridge_000",
+    "image_mode" : 0
+  },
+  "lens_000": {
+    "name" : "lens",
+    "material" : "glass",
+    "primitive" : "rectangular_platform",
+    "mechanisms" : [],
+    "properties" : [],
+    "image_file" : "lens_000",
+    "image_mode" : 0
+  },
+  "bow_000": {
+    "name" : "bow",
+    "material" : "plastic",
+    "primitive" : "rod",
+    "mechanisms" : [],
+    "properties" : [],
+    "image_file" : "bow_000",
     "image_mode" : 0
   }
 }

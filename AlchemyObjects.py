@@ -162,7 +162,7 @@ class Item:
             if len(anchors) < 1:
                 continue
             anchor_dict[node.identifier] = anchors
-            print(str(anchors))
+            print("Anchors for {}: {}".format(comp.name, anchors))
         return anchor_dict
 
 
